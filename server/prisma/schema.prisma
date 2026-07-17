@@ -5,16 +5,15 @@
 // Default: Local SQLite database for easy zero-setup local testing.
 // Production: Switch to PostgreSQL by commenting the SQLite blocks and uncommenting the PostgreSQL blocks.
 
-datasource db {
-  provider = "sqlite"
-  url      = "file:./dev.db"
-}
-
-// Uncomment this block and comment out the SQLite block above to use PostgreSQL (Neon / Supabase)
 // datasource db {
-//   provider = "postgresql"
-//   url      = env("DATABASE_URL")
+//   provider = "sqlite"
+//   url      = "file:./dev.db"
 // }
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
 
 generator client {
   provider = "prisma-client-js"

@@ -8,7 +8,8 @@ import {
   LogOut, 
   Menu, 
   X, 
-  Fingerprint
+  Fingerprint,
+  PlusCircle
 } from 'lucide-react';
 
 const DashboardLayout = ({ children }) => {
@@ -19,7 +20,8 @@ const DashboardLayout = ({ children }) => {
 
   const navigation = [
     { name: 'Dashboard', href: '/', icon: LayoutDashboard },
-    { name: 'Create QR', href: '/create', icon: QrCode },
+    { name: 'Your QR', href: '/your-qr', icon: QrCode },
+    { name: 'Create QR', href: '/create', icon: PlusCircle },
     { name: 'Profile Settings', href: '/profile', icon: User },
   ];
 

@@ -9,6 +9,7 @@ import QRCreate from './pages/QRCreate.jsx';
 import QREdit from './pages/QREdit.jsx';
 import QRDetail from './pages/QRDetail.jsx';
 import Profile from './pages/Profile.jsx';
+import YourQR from './pages/YourQR.jsx';
 import Login from './pages/Login.jsx';
 import Register from './pages/Register.jsx';
 import PublicMultiLink from './pages/PublicMultiLink.jsx';
@@ -85,6 +86,14 @@ function App() {
             element={
               <ProtectedRoute>
                 <Dashboard />
+              </ProtectedRoute>
+            } 
+          />
+          <Route 
+            path="/your-qr" 
+            element={
+              <ProtectedRoute>
+                <YourQR />
               </ProtectedRoute>
             } 
           />
