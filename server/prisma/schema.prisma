@@ -1,0 +1,60 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// --- DATABASE CONFIGURATION ---
+// Default: Local SQLite database for easy zero-setup local testing.
+// Production: Switch to PostgreSQL by commenting the SQLite blocks and uncommenting the PostgreSQL blocks.
+
+datasource db {
+  provider = "sqlite"
+  url      = "file:./dev.db"
+}
+
+// Uncomment this block and comment out the SQLite block above to use PostgreSQL (Neon / Supabase)
+// datasource db {
+//   provider = "postgresql"
+//   url      = env("DATABASE_URL")
+// }
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+model User {
+  id         String   @id // Matches Supabase Auth user UUID
+  email      String   @unique
+  name       String?
+  avatarUrl  String?
+  createdAt  DateTime @default(now())
+  updatedAt  DateTime @updatedAt
+  qrs        QRCode[]
+}
+
+model QRCode {
+  id          String   @id @default(uuid())
+  userId      String
+  user        User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  name        String
+  type        String   // "website" | "whatsapp" | "phone" | "email" | "sms" | "maps" | "upi" | "pdf" | "image" | "video" | "vcard" | "multilink"
+  isDynamic   Boolean  @default(false)
+  shortUrl    String?  @unique // Unique short slug for dynamic redirects (e.g. "x1Y7z")
+  config      String   // Customization options serialized as JSON string (SQLite compatibility)
+  data        String   // Custom QR data content serialized as JSON string
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+  scans       Scan[]
+}
+
+model Scan {
+  id         String   @id @default(uuid())
+  qrCodeId   String
+  qrCode     QRCode   @relation(fields: [qrCodeId], references: [id], onDelete: Cascade)
+  ip         String?
+  userAgent  String?
+  device     String?  // "desktop" | "mobile" | "tablet"
+  browser    String?
+  os         String?
+  country    String?
+  city       String?
+  scannedAt  DateTime @default(now())
+}
