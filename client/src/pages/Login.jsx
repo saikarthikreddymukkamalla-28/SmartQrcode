@@ -87,7 +87,7 @@ const Login = () => {
               />
             </div>
 
-            <div>
+            <div className="space-y-sm">
               <button
                 type="submit"
                 disabled={loading}
@@ -95,6 +95,13 @@ const Login = () => {
               >
                 {loading ? 'Authenticating...' : 'Sign In'}
               </button>
+              
+              <Link
+                to="/register"
+                className="w-full btn-secondary py-sm text-center block"
+              >
+                Register Now
+              </Link>
             </div>
           </form>
 
