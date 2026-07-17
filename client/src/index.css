@@ -1,0 +1,58 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  body {
+    @apply bg-brand-50 text-brand-900 font-sans antialiased;
+  }
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  @apply bg-brand-200 rounded-full hover:bg-brand-300;
+}
+
+/* Premium Card & Styling Utilities */
+.card-premium {
+  @apply bg-white border border-brand-200 rounded-xl shadow-premium transition-all duration-200;
+}
+
+.card-premium-hover {
+  @apply hover:border-brand-300 hover:shadow-premium-hover;
+}
+
+.input-premium {
+  @apply w-full px-md py-sm bg-white border border-brand-200 rounded-lg text-brand-900 text-sm focus:outline-none focus:border-brand-900 transition-all duration-150;
+}
+
+.btn-primary {
+  @apply px-md py-sm bg-brand-900 text-white rounded-lg text-sm font-medium hover:bg-brand-800 focus:outline-none focus:ring-1 focus:ring-brand-900 focus:ring-offset-2 transition-all duration-150 disabled:opacity-50 disabled:cursor-not-allowed;
+}
+
+.btn-secondary {
+  @apply px-md py-sm bg-white border border-brand-200 text-brand-700 rounded-lg text-sm font-medium hover:bg-brand-50 hover:text-brand-900 focus:outline-none focus:ring-1 focus:ring-brand-300 transition-all duration-150 disabled:opacity-50;
+}
+
+.btn-danger {
+  @apply px-md py-sm bg-red-50 border border-red-200 text-red-600 rounded-lg text-sm font-medium hover:bg-red-100 hover:text-red-700 focus:outline-none focus:ring-1 focus:ring-red-300 transition-all duration-150;
+}
+
+/* Custom fade-in animations */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(4px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.animate-fade-in {
+  animation: fadeIn 0.3s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
